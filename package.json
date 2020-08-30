@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts",
+    "start": "node dist/index.js",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
   },
   "devDependencies": {
