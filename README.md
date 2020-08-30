@@ -16,7 +16,7 @@
 
 **GET /universities**
 
-* Retorna todas as universidades cadastras
+* Retorna todas as universidades cadastradas
 
 ```json
 [
@@ -53,7 +53,7 @@
 
 **GET /universities/:id**
 
-* :id - Envie o id da universidade nos parâmetros de rota, para buscar apenas os dados deste universidade.
+* :id - Envie o id da universidade nos parâmetros de rota, para buscar apenas os dados desta universidade.
 
 ```json
 {
