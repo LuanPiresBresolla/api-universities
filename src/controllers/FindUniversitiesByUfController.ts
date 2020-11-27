@@ -1,15 +1,23 @@
 import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
 
-import connection from '../database/connection';
+import Universitie from '../entities/Universitie';
 
 class FindUniversitiesByUfController {
   async index(req: Request, res: Response): Promise<Response> {
+    const universitiesRepository = getRepository(Universitie);
+
     const { uf } = req.query;
 
-    const universities = await connection('universities').where(
-      'uf',
-      String(uf),
-    );
+    if (!uf) {
+      return res.json({ error: 'UF not found' });
+    }
+
+    uf.toString().toUpperCase();
+
+    const universities = await universitiesRepository.find({
+      where: { uf: uf.toString().toUpperCase() },
+    });
 
     if (!universities) {
       return res.json({ message: 'Universities not found' });
