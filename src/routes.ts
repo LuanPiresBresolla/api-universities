@@ -10,8 +10,6 @@ const universitiesController = new UniversitiesController();
 const findUniversitiesByUfController = new FindUniversitiesByUfController();
 const findUniversitiesByIBGEController = new FindUniversitiesByIBGEController();
 
-// routes.post('/universities', universitiesController.create);
-
 routes.get('/universities', universitiesController.index);
 routes.get('/universities/:id', universitiesController.show);
 

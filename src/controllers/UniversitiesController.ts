@@ -29,25 +29,6 @@ class UniversitiesController {
 
     return res.json(universities);
   }
-
-  // async create(req: Request, res: Response): Promise<Response> {
-  //   const universitiesRepository = getRepository(Universitie);
-
-  //   const universitiesKnex = await connection('universities');
-
-  //   for (let i = 0; i <= universitiesKnex.length; i++) {
-  //     try {
-  //       const universitie = universitiesRepository.create(universitiesKnex[i]);
-
-  //       // eslint-disable-next-line no-await-in-loop
-  //       await universitiesRepository.save(universitie);
-  //     } catch (error) {
-  //       console.log('Erro no registro: ', universitiesKnex[i].id);
-  //     }
-  //   }
-
-  //   return res.json({ ok: true });
-  // }
 }
 
 export default UniversitiesController;
