@@ -12,7 +12,7 @@
 
 ## Como utilizar
 
-**https://api-universities.herokuapp.com**
+**https://api.universities.com.br**
 
 **GET /universities**
 
