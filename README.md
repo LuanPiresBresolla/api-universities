@@ -1,16 +1,18 @@
-<h1 align="center">API Universities</h1>
+<h1 align="center">
+  <i>API Universities 🏫</i>
+</h1>
 
 <p align="center">
-  Busque universidades por todo o Brasil
+ 🔎 Busque universidades por todo o Brasil
 </p>
 
-## IMPORTANTE!
+## 🚧 IMPORTANTE! 🚧
 
 <p align="justify">
   As universidades foram retiradas do censo do INEP, que foi realizado em 29 de Agosto de 2013, e atualizado 18 de Agosto de 2016. Podem conter informações incorretas. Qualquer informação incorreta nos avise, para que possamos ajustar as devidas informações.
 </p>
 
-## Como utilizar
+## ➜ Como utilizar
 
 **https://api.universities.com.br**
 
