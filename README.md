@@ -74,7 +74,7 @@
 }
 ```
 
-**GET universities-uf?uf=MT**
+**GET /universities-uf?uf=MT**
 
 * ?uf=MT - Envie a sigla do estado nos query params, para buscar apenas as universidades daquele estado.
 
@@ -95,7 +95,7 @@
 }
 ```
 
-**GET universities/ibge/:id**
+**GET /universities/ibge/:id**
 
 * :id - Envie o código do ibge do municipio nos parâmetros de rota, para buscar todas as universidades daquele municipio.
 
