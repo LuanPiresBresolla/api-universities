@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity('universities')
-class Universitie {
+class University {
   @PrimaryGeneratedColumn('increment')
   id: string;
 
@@ -48,4 +48,4 @@ class Universitie {
   updated_at: Date;
 }
 
-export default Universitie;
+export default University;
