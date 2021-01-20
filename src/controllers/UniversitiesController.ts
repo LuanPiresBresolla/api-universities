@@ -1,48 +1,71 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { INTERNAL_SERVER_ERROR } from '../constants';
+import BaseController from './BaseController';
 
 import University from '../entities/University';
 
-class UniversitiesController {
-  async show(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+class UniversitiesController extends BaseController {
+  show = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { id } = req.params;
 
-    const universitiesRepository = getRepository(University);
+      const universitiesRepository = getRepository(University);
 
-    const university = await universitiesRepository.findOne(id);
+      const university = await universitiesRepository.findOne(id);
 
-    if (!university) {
-      return res.json({ message: 'Universitie not found' });
+      if (!university) {
+        return res.json({ message: 'Universitie not found' });
+      }
+
+      return res.json(university);
+    } catch(_) {
+      res.status(500);
+
+      return this.error(req, res, {
+        message: INTERNAL_SERVER_ERROR
+      })
     }
-
-    return res.json(university);
   }
 
-  async index(req: Request, res: Response): Promise<Response> {
-    const universitiesRepository = getRepository(University);
-    const { page, records = 10 } = req.query;
+  index = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const universitiesRepository = getRepository(University);
+      const { page, records = 10 } = req.query;
 
-    // Verificando quantos registros existem
-    const count = await universitiesRepository.count();
-    res.header('X-Total-Count', String(count));
+      // Verificando quantos registros existem
+      const count = await universitiesRepository.count();
+      res.header('X-Total-Count', String(count));
 
-    // Realizando paginação
-    if (page) {
-      const findPage = Number(page);
-      const findRecords = Number(records);
+      // Realizando paginação
+      if (page) {
+        const findPage = Number(page);
+        const findRecords = Number(records);
 
-      const universities = await universitiesRepository.find({
-        skip: (findPage - 1) * findRecords,
-        take: findRecords,
+        const universities = await universitiesRepository.find({
+          skip: (findPage - 1) * findRecords,
+          take: findRecords,
+        });
+
+        return this.success(req, res, {
+          data: universities
+        });
+      }
+
+      // Buscando todos os registros
+      const universities = await universitiesRepository.find();
+
+      return this.success(req, res, {
+        data: universities
       });
+    } catch(e) {
+      console.log(e);
+      res.status(500);
 
-      return res.json(universities);
+      return this.error(req, res, {
+        message: INTERNAL_SERVER_ERROR
+      })
     }
-
-    // Buscando todos os registros
-    const universities = await universitiesRepository.find();
-
-    return res.json(universities);
   }
 }
 
