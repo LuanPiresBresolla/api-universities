@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { INTERNAL_SERVER_ERROR } from '../constants';
+import INTERNAL_SERVER_ERROR from '../constants';
 import BaseController from './BaseController';
 
 import University from '../entities/University';
@@ -31,8 +31,8 @@ class FindUniversitiesByIBGEController extends BaseController {
         });
 
         return this.success(req, res, {
-          data: universities
-        })
+          data: universities,
+        });
       }
 
       const universities = await universitiesRepository.find({
@@ -40,16 +40,16 @@ class FindUniversitiesByIBGEController extends BaseController {
       });
 
       return this.success(req, res, {
-        data: universities
-      })
-    } catch(_) {
+        data: universities,
+      });
+    } catch (_) {
       res.status(500);
 
       return this.error(req, res, {
-        message: INTERNAL_SERVER_ERROR
-      })
+        message: INTERNAL_SERVER_ERROR,
+      });
     }
-  }
+  };
 }
 
 export default FindUniversitiesByIBGEController;

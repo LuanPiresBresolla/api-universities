@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { INTERNAL_SERVER_ERROR } from '../constants';
+import INTERNAL_SERVER_ERROR from '../constants';
 import BaseController from './BaseController';
 
 import University from '../entities/University';
@@ -19,14 +19,14 @@ class UniversitiesController extends BaseController {
       }
 
       return res.json(university);
-    } catch(_) {
+    } catch (_) {
       res.status(500);
 
       return this.error(req, res, {
-        message: INTERNAL_SERVER_ERROR
-      })
+        message: INTERNAL_SERVER_ERROR,
+      });
     }
-  }
+  };
 
   index = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -48,7 +48,7 @@ class UniversitiesController extends BaseController {
         });
 
         return this.success(req, res, {
-          data: universities
+          data: universities,
         });
       }
 
@@ -56,17 +56,17 @@ class UniversitiesController extends BaseController {
       const universities = await universitiesRepository.find();
 
       return this.success(req, res, {
-        data: universities
+        data: universities,
       });
-    } catch(e) {
+    } catch (e) {
       console.log(e);
       res.status(500);
 
       return this.error(req, res, {
-        message: INTERNAL_SERVER_ERROR
-      })
+        message: INTERNAL_SERVER_ERROR,
+      });
     }
-  }
+  };
 }
 
 export default UniversitiesController;

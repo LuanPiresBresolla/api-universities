@@ -1,10 +1,9 @@
-
 export type ControllerErrorPayload = {
-  code?: number
+  code?: number;
   message: string;
-}
+};
 
 export type ControllerSuccessPayload<T> = {
-  code?: number
-  data: T
-}
+  code?: number;
+  data: T;
+};
