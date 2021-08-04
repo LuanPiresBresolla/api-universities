@@ -26,10 +26,10 @@
     "camelcase": "off",
     "no-useless-constructor": "off",
     "no-console": "off",
-    "import/no-unresolved": [
-      2,
-      { "caseSensitive": false }
-    ],
+    // "import/no-unresolved": [
+    //   2,
+    //   { "caseSensitive": false }
+    // ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": ["error", {
       "argsIgnorePattern": "_"
