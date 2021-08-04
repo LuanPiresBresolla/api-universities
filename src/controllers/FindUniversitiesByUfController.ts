@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import INTERNAL_SERVER_ERROR from '../constants';
-import BaseController from './BaseController';
 
 import University from '../entities/University';
+import { AppError } from '../errors/AppError';
 
-class FindUniversitiesByUfController extends BaseController {
-  index = async (req: Request, res: Response): Promise<Response> => {
+class FindUniversitiesByUfController {
+  async index(req: Request, res: Response): Promise<Response> {
     try {
       const universitiesRepository = getRepository(University);
 
@@ -35,9 +34,7 @@ class FindUniversitiesByUfController extends BaseController {
           take: findRecords,
         });
 
-        return this.success(req, res, {
-          data: universities,
-        });
+        return res.json(universities);
       }
 
       // Buscando todos os registros
@@ -45,17 +42,13 @@ class FindUniversitiesByUfController extends BaseController {
         where: { uf: uf.toString().toUpperCase() },
       });
 
-      return this.success(req, res, {
-        data: universities,
-      });
-    } catch (_) {
-      res.status(500);
-
-      return this.error(req, res, {
-        message: INTERNAL_SERVER_ERROR,
-      });
+      return res.json(universities);
+    } catch (error) {
+      throw new AppError(
+        'Error a fetch universities. Contact the service administrator',
+      );
     }
-  };
+  }
 }
 
-export default FindUniversitiesByUfController;
+export { FindUniversitiesByUfController };

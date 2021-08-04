@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import UniversitiesController from './controllers/UniversitiesController';
-import FindUniversitiesByUfController from './controllers/FindUniversitiesByUfController';
-import FindUniversitiesByIBGEController from './controllers/FindUniversitiesByIBGEController';
+import { UniversitiesController } from './controllers/UniversitiesController';
+import { FindUniversitiesByUfController } from './controllers/FindUniversitiesByUfController';
+import { FindUniversitiesByIBGEController } from './controllers/FindUniversitiesByIBGEController';
 
 const routes = Router();
 

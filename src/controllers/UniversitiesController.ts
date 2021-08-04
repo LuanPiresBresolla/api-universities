@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import INTERNAL_SERVER_ERROR from '../constants';
-import BaseController from './BaseController';
 
 import University from '../entities/University';
+import { AppError } from '../errors/AppError';
 
-class UniversitiesController extends BaseController {
-  show = async (req: Request, res: Response): Promise<Response> => {
+class UniversitiesController {
+  async show(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
 
@@ -19,16 +18,14 @@ class UniversitiesController extends BaseController {
       }
 
       return res.json(university);
-    } catch (_) {
-      res.status(500);
-
-      return this.error(req, res, {
-        message: INTERNAL_SERVER_ERROR,
-      });
+    } catch (error) {
+      throw new AppError(
+        'Error a fetch university. Contact the service administrator',
+      );
     }
-  };
+  }
 
-  index = async (req: Request, res: Response): Promise<Response> => {
+  async index(req: Request, res: Response): Promise<Response> {
     try {
       const universitiesRepository = getRepository(University);
       const { page, records = 10 } = req.query;
@@ -47,26 +44,19 @@ class UniversitiesController extends BaseController {
           take: findRecords,
         });
 
-        return this.success(req, res, {
-          data: universities,
-        });
+        return res.json(universities);
       }
 
       // Buscando todos os registros
       const universities = await universitiesRepository.find();
 
-      return this.success(req, res, {
-        data: universities,
-      });
-    } catch (e) {
-      console.log(e);
-      res.status(500);
-
-      return this.error(req, res, {
-        message: INTERNAL_SERVER_ERROR,
-      });
+      return res.json(universities);
+    } catch (error) {
+      throw new AppError(
+        'Error a fetch universities. Contact the service administrator',
+      );
     }
-  };
+  }
 }
 
-export default UniversitiesController;
+export { UniversitiesController };

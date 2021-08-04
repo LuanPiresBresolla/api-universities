@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import INTERNAL_SERVER_ERROR from '../constants';
-import BaseController from './BaseController';
 
 import University from '../entities/University';
+import { AppError } from '../errors/AppError';
 
-class FindUniversitiesByIBGEController extends BaseController {
-  index = async (req: Request, res: Response): Promise<Response> => {
+class FindUniversitiesByIBGEController {
+  async index(req: Request, res: Response): Promise<Response> {
     try {
       const universitiesRepository = getRepository(University);
 
@@ -30,26 +29,20 @@ class FindUniversitiesByIBGEController extends BaseController {
           take: findRecords,
         });
 
-        return this.success(req, res, {
-          data: universities,
-        });
+        return res.json(universities);
       }
 
       const universities = await universitiesRepository.find({
         where: { ibge },
       });
 
-      return this.success(req, res, {
-        data: universities,
-      });
-    } catch (_) {
-      res.status(500);
-
-      return this.error(req, res, {
-        message: INTERNAL_SERVER_ERROR,
-      });
+      return res.json(universities);
+    } catch (error) {
+      throw new AppError(
+        'Error a fetch universities. Contact the service administrator',
+      );
     }
-  };
+  }
 }
 
-export default FindUniversitiesByIBGEController;
+export { FindUniversitiesByIBGEController };
