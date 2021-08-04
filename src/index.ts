@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import routes from './routes';
 
 import './database/connection';
-import { notFoundRoute } from './middlewares/notFoundRoute';
+import notFoundRoute from './middlewares/notFoundRoute';
 import { AppError } from './errors/AppError';
 
 const app = express();
