@@ -22,6 +22,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     .json({ message: `Internal server error - ${err.message}` });
 });
 
-app.listen(3333, () => {
+app.listen(process.env.PORT || 3333, () => {
   console.log('Server started in port 3333 🚀');
 });
