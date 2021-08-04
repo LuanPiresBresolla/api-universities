@@ -10,6 +10,10 @@ const universitiesController = new UniversitiesController();
 const findUniversitiesByUfController = new FindUniversitiesByUfController();
 const findUniversitiesByIBGEController = new FindUniversitiesByIBGEController();
 
+routes.get('/', (req, res) => {
+  return res.status(200).json({ message: 'API Online' });
+});
+
 routes.get('/universities', universitiesController.index);
 routes.get('/universities/:id', universitiesController.show);
 
