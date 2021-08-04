@@ -14,7 +14,12 @@
 
 ## ➜ Como utilizar
 
-**https://api.universities.com.br**
+**https://api-universities.herokuapp.com/**
+
+**Paginação**
+
+* ?page=1 - Número da página
+* ?records=10 - Número de registros por página
 
 **GET /universities**
 
