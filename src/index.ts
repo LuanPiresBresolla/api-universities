@@ -2,14 +2,14 @@ import express, { NextFunction, Request, Response } from 'express';
 import routes from './routes';
 
 import './database/connection';
-import notFoundRoute from './middlewares/notFoundRoute';
+// import notFoundRoute from './middlewares/notFoundRoute';
 import { AppError } from './errors/AppError';
 
 const app = express();
 
 app.use(express.json());
 app.use(routes);
-app.use(notFoundRoute);
+// app.use(notFoundRoute);
 
 // eslint-disable-next-line
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
